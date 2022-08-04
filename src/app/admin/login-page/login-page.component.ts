@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validator, Validators} from "@angular/forms";
-import {User} from "../shared/interfaces";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {AuthService} from "../shared/services/auth.service";
+import {User} from "../../shared/interfaces";
 
 @Component({
   selector: 'app-login-page',
@@ -12,7 +12,7 @@ import {AuthService} from "../shared/services/auth.service";
 export class LoginPageComponent implements OnInit {
 
   form!:FormGroup
-  submited: boolean = false;
+  submitted: boolean = false;
   message!:string
   constructor(public auth:AuthService,
                private router:Router,
@@ -39,7 +39,7 @@ export class LoginPageComponent implements OnInit {
     if(this.form.invalid){
       return
     }
-    this.submited=true;
+    this.submitted=true;
     const user: User = {
       email: this.form.value.email,
       password: this.form.value.password,
@@ -47,10 +47,10 @@ export class LoginPageComponent implements OnInit {
     }
     this.auth.login(user).subscribe(()=>{
       this.form.reset()
-      this.submited=false;
+      this.submitted=false;
       this.router.navigate(['/admin','dashboard'])
     },()=>{
-      this.submited = false;
+      this.submitted = false;
     })
   }
 }

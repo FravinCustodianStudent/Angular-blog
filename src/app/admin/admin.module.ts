@@ -7,11 +7,11 @@ import { DashboardPageComponent } from './dashboard-page/dashboard-page.componen
 import { CreatePageComponent } from './create-page/create-page.component';
 import { EditPageComponent } from './edit-page/edit-page.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {AuthService} from "./shared/services/auth.service";
 import {AuthGuard} from "./shared/services/auth.guard";
-import {SharedModule} from "./shared/shared/shared.module";
 import { SearchPipe } from './shared/search.pipe';
 import {AppModule} from "../app.module";
+import {AlertComponent} from "./shared/components/alert/alert.component";
+import {AlertService} from "./shared/services/alert.service";
 
 
 
@@ -23,7 +23,7 @@ import {AppModule} from "../app.module";
     CreatePageComponent,
     EditPageComponent,
     SearchPipe,
-
+    AlertComponent
   ],
     imports: [
         RouterModule.forChild([
@@ -41,12 +41,10 @@ import {AppModule} from "../app.module";
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        SharedModule,
-        AppModule,
     ],
   exports:[
     RouterModule
   ],
-  providers:[AuthService,AuthGuard]
+  providers:[AuthGuard,AlertService]
 })
 export class AdminModule { }
