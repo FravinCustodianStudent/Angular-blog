@@ -1,13 +1,20 @@
-<div class="post">
-  <div class="header">
-    <h1>Post title</h1>
-    <button routerLink="/" class="btn btn-link">On homepage</button>
+<div *ngIf="post$| async as post;else loading">
+  <div class="post">
+    <div class="header">
+      <h1>{{post.title}}</h1>
+      <button routerLink="/" class="btn btn-link">On homepage</button>
+    </div>
+    <div class="info">
+      <strong>{{post.author}}</strong>
+      <small>{{post.date | date:'long':undefined:'ua'}}</small>
+    </div>
+    <div>
+    <p>{{post.text}} </p>
+    </div>
   </div>
-  <div class="info">
-    <strong>Autor</strong>
-    <small>12.09.0000</small>
-  </div>
-  <div>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium alias animi architecto asperiores aut autem beatae commodi corporis cum cupiditate debitis delectus dolore, doloremque dolores ducimus eos esse et ex expedita incidunt labore maxime minima molestias mollitia natus neque non nostrum optio quas, quibusdam tempora ullam vel voluptate voluptatem!</p>
-  </div>
+
 </div>
+
+<ng-template #loading>
+  <p class="text-center">Loading...</p>
+</ng-template>
